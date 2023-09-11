@@ -67,7 +67,7 @@ function loadQuestion() {
     const selectedAnswerId = selectedAnswers[currentQuestion];
     const selectedAnswerEl = document.getElementById(selectedAnswerId);
     selectedAnswerEl.checked = true;
-    debugger;
+
   }
 }
 loadQuestion();
@@ -77,7 +77,6 @@ const getSelected = () => {
   answerEls.forEach((answerElement) => {
     if (answerElement.checked) {
       answer = answerElement.id;
-      selectedAnswer = answer;
     }
   });
   return answer;
