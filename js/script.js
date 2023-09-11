@@ -53,7 +53,6 @@ const deselectAll = () => {
     answerEl.checked = false;
   });
 };
-
 function loadQuestion() {
   deselectAll();
   const questionList = quizData[currentQuestion];
@@ -62,6 +61,9 @@ function loadQuestion() {
   b_text.innerText = questionList.b;
   c_text.innerText = questionList.c;
   d_text.innerText = questionList.d;
+
+  currentQuestion === 0 ? prevBtn.style.display = "none" : prevBtn.style.display = "block";
+  currentQuestion === quizData.length - 1 ? nextBtn.innerText = "Finish" : nextBtn.innerText = "Next";
 
   if (selectedAnswers[currentQuestion]) {
     const selectedAnswerId = selectedAnswers[currentQuestion];
@@ -88,7 +90,6 @@ const prevSelect = () => {
     }
   });
 };
-
 nextBtn.addEventListener("click", () => {
   const answer = getSelected();
   selectedAnswers[currentQuestion] = answer;
@@ -100,7 +101,8 @@ nextBtn.addEventListener("click", () => {
 
     if (currentQuestion < quizData.length) {
       loadQuestion();
-    } else {
+    }
+    else {
       quiz.innerHTML = `<h2>You answered correctly at ${score}/${quizData.length} questions.</h2>`;
       setTimeout(() => {
         location.reload();
@@ -113,6 +115,5 @@ prevBtn.addEventListener("click", (e) => {
   if (currentQuestion > 0) {
     currentQuestion--;
     loadQuestion();
-    prevSelect();
   }
 });
